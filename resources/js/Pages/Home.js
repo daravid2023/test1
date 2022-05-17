@@ -1,8 +1,8 @@
 import React from "react";
-import {Title, Button, createStyles} from "@mantine/core";
-import {Link, Head} from "@inertiajs/inertia-react";
-import {ArrowRight} from "tabler-icons-react";
-import Navbar from "@/Components/Navbar";
+import { Title, Button, createStyles } from "@mantine/core";
+import { Link, Head } from "@inertiajs/inertia-react";
+import { ArrowRight } from "tabler-icons-react";
+import Base from "@/Layouts/Base";
 
 const useStyles = createStyles((theme) => ({
     hero__container: {
@@ -46,11 +46,11 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Home(props) {
-    const {classes} = useStyles();
+    const { classes } = useStyles();
+
     return (
-        <>
-            <Head title="Home"/>
-            <Navbar/>
+        <Base {...props}>
+            <Head title="Home" />
             <div>
                 <div className={classes.hero__container}>
                     <div className={classes.hero__main}>
@@ -66,7 +66,7 @@ export default function Home(props) {
                         <Link href={route("properties-for-sale")} as="span">
                             <Button
                                 className={classes.hero__main_cta_button}
-                                rightIcon={<ArrowRight/>}
+                                rightIcon={<ArrowRight />}
                                 variant="gradient"
                             >
                                 Browse
@@ -75,6 +75,6 @@ export default function Home(props) {
                     </div>
                 </div>
             </div>
-        </>
+        </Base>
     );
 }

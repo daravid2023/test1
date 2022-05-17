@@ -64,6 +64,14 @@ const useStyles = createStyles((theme) => ({
         },
     },
 
+    greet: {
+        marginLeft: "1.111rem",
+    },
+
+    username: {
+        textDecoration: "underline",
+    },
+
     burger: {
         [theme.fn.largerThan("sm")]: {
             display: "none",
@@ -149,7 +157,17 @@ export default function Navbar({ auth }) {
 
                 <Group spacing={5} className={classes.links}>
                     {navLinks}
-                    <Group position="center"><Authentication auth={auth}/></Group>
+                    <Group position="center">
+                        <Authentication auth={auth} />
+                        {auth.user && (
+                            <p className={classes.greet}>
+                                Hello, {" "}
+                                <span className={classes.username}>
+                                    {auth?.user?.name}
+                                </span>
+                            </p>
+                        )}
+                    </Group>
                 </Group>
                 <Burger
                     opened={opened}
@@ -166,12 +184,11 @@ export default function Navbar({ auth }) {
                             style={styles}
                         >
                             {navLinks}
-                             <Authentication auth={auth}/>
+                            <Authentication auth={auth} />
                         </Paper>
                     )}
                 </Transition>
             </Container>
-            <p>{auth?.user.name}</p>
         </Header>
     );
 }

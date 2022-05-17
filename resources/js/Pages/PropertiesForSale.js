@@ -8,7 +8,7 @@ import {
     Title,
 } from "@mantine/core";
 
-import {Clock, CurrentLocation} from "tabler-icons-react";
+import { Clock, CurrentLocation } from "tabler-icons-react";
 
 import ListingCard from "@/components/ListingCard";
 import Base from "@/Layouts/Base";
@@ -61,11 +61,11 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-function PropertiesForSale() {
-    const {classes} = useStyles();
+function PropertiesForSale(props) {
+    const { classes } = useStyles();
 
     return (
-        <Base>
+        <Base {...props}>
             <Container
                 size="lg"
                 sx={{
@@ -74,16 +74,16 @@ function PropertiesForSale() {
             >
                 <Grid>
                     <Grid.Col sm={3}>
-                        <PropertyLocationFilter/>
+                        <PropertyLocationFilter />
                     </Grid.Col>
                     <Grid.Col sm={4}>
-                        <PropertyTypeFilter/>
+                        <PropertyTypeFilter />
                     </Grid.Col>
                     <Grid.Col sm={3}>
-                        <PropertyPriceRangeFilter/>
+                        <PropertyPriceRangeFilter />
                     </Grid.Col>
                     <Grid.Col sm={2}>
-                        <PropertyApplyFilterButton/>
+                        <PropertyApplyFilterButton />
                     </Grid.Col>
                 </Grid>
 
@@ -97,30 +97,46 @@ function PropertiesForSale() {
                 </Title>
 
                 <ListingCard>
-                    <ListingCard.Title title="2 Bedroom Duplex Apartment"/>
+                    <ListingCard.Title title="2 Bedroom Duplex Apartment" />
                     <ListingCard.Content>
                         <div className={classes.container__main}>
                             <div className={classes.container__carousel}>
-                                <img src="./static/brand/hero.jpg" alt="images"/>
+                                <img
+                                    src="./static/brand/hero.jpg"
+                                    alt="images"
+                                />
                             </div>
                             <div className={classes.container__description}>
-                                <Stack className={classes.main__content} justify="space-between">
+                                <Stack
+                                    className={classes.main__content}
+                                    justify="space-between"
+                                >
                                     <div>
-                                        <Group className={classes.main__description} position="apart">
+                                        <Group
+                                            className={
+                                                classes.main__description
+                                            }
+                                            position="apart"
+                                        >
                                             <Text>Apartment</Text>
                                             <Text>$150,000</Text>
                                         </Group>
                                         <Group spacing={4}>
-                                            <CurrentLocation size={16}/>
-                                            <Text>Phsar Thmei III, Daun Penh, Phnom Penh</Text>
+                                            <CurrentLocation size={16} />
+                                            <Text>
+                                                Phsar Thmei III, Daun Penh,
+                                                Phnom Penh
+                                            </Text>
                                         </Group>
                                     </div>
                                     <div>
                                         <Group spacing={4}>
-                                            <Clock size={16}/>
+                                            <Clock size={16} />
                                             <Text>Updated: 2 days ago</Text>
                                         </Group>
-                                        <Text>DABEST PROPERTIES CAMBODIA CO., LTD</Text>
+                                        <Text>
+                                            DABEST PROPERTIES CAMBODIA CO., LTD
+                                        </Text>
                                     </div>
                                 </Stack>
                             </div>

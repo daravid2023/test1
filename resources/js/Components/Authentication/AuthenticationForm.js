@@ -1,6 +1,6 @@
 import React from "react";
 
-import {useForm, useToggle, upperFirst} from "@mantine/hooks";
+import { useForm, useToggle, upperFirst } from "@mantine/hooks";
 import {
     TextInput,
     PasswordInput,
@@ -9,7 +9,7 @@ import {
     Checkbox,
     Anchor,
 } from "@mantine/core";
-import {Inertia} from "@inertiajs/inertia";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function AuthenticationForm() {
     const [type, toggle] = useToggle("login", ["login", "register"]);
@@ -28,9 +28,11 @@ export default function AuthenticationForm() {
     });
 
     return (
-        <form onSubmit={form.onSubmit((values) => {
-            return Inertia.post(route('login'), values)
-        })}>
+        <form
+            onSubmit={form.onSubmit((values) =>
+                Inertia.post(route("login"), values)
+            )}
+        >
             <Group direction="column" grow>
                 {type === "register" && (
                     <TextInput
@@ -38,7 +40,10 @@ export default function AuthenticationForm() {
                         placeholder="Your name"
                         value={form.values.name}
                         onChange={(event) =>
-                            form.setFieldValue("name", event.currentTarget.value)
+                            form.setFieldValue(
+                                "name",
+                                event.currentTarget.value
+                            )
                         }
                     />
                 )}
@@ -60,7 +65,10 @@ export default function AuthenticationForm() {
                     placeholder="Your password"
                     value={form.values.password}
                     onChange={(event) =>
-                        form.setFieldValue("password", event.currentTarget.value)
+                        form.setFieldValue(
+                            "password",
+                            event.currentTarget.value
+                        )
                     }
                     error={
                         form.errors.password &&
@@ -73,7 +81,10 @@ export default function AuthenticationForm() {
                         label="I accept terms and conditions"
                         checked={form.values.terms}
                         onChange={(event) =>
-                            form.setFieldValue("terms", event.currentTarget.checked)
+                            form.setFieldValue(
+                                "terms",
+                                event.currentTarget.checked
+                            )
                         }
                     />
                 )}
@@ -91,7 +102,9 @@ export default function AuthenticationForm() {
                         ? "Already have an account? Login."
                         : "Don't have an account? Register."}
                 </Anchor>
-                <Button type="submit" color="blue">{upperFirst(type)}</Button>
+                <Button type="submit" color="blue">
+                    {upperFirst(type)}
+                </Button>
             </Group>
         </form>
     );

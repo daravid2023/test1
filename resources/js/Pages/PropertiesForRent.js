@@ -8,7 +8,7 @@ import {
     Title,
 } from "@mantine/core";
 
-import {Clock, CurrentLocation} from "tabler-icons-react";
+import { Clock, CurrentLocation } from "tabler-icons-react";
 
 import ListingCard from "@/components/ListingCard";
 
@@ -62,11 +62,11 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-function PropertiesForRent() {
-    const {classes} = useStyles();
+function PropertiesForRent(props) {
+    const { classes } = useStyles();
 
     return (
-        <Base>
+        <Base {...props}>
             <Container
                 size="lg"
                 sx={{
@@ -75,16 +75,16 @@ function PropertiesForRent() {
             >
                 <Grid>
                     <Grid.Col sm={3}>
-                        <PropertyLocationFilter/>
+                        <PropertyLocationFilter />
                     </Grid.Col>
                     <Grid.Col sm={4}>
-                        <PropertyTypeFilter/>
+                        <PropertyTypeFilter />
                     </Grid.Col>
                     <Grid.Col sm={3}>
-                        <PropertyPriceRangeFilter/>
+                        <PropertyPriceRangeFilter />
                     </Grid.Col>
                     <Grid.Col sm={2}>
-                        <PropertyApplyFilterButton/>
+                        <PropertyApplyFilterButton />
                     </Grid.Col>
                 </Grid>
 
@@ -98,7 +98,7 @@ function PropertiesForRent() {
                 </Title>
 
                 <ListingCard>
-                    <ListingCard.Title title="2 Bedroom Duplex Apartment"/>
+                    <ListingCard.Title title="2 Bedroom Duplex Apartment" />
                     <ListingCard.Content>
                         <div className={classes.container__main}>
                             <div className={classes.container__carousel}>
@@ -123,7 +123,7 @@ function PropertiesForRent() {
                                             <Text>$150,000</Text>
                                         </Group>
                                         <Group spacing={4}>
-                                            <CurrentLocation size={16}/>
+                                            <CurrentLocation size={16} />
                                             <Text>
                                                 Phsar Thmei III, Daun Penh,
                                                 Phnom Penh
@@ -132,7 +132,7 @@ function PropertiesForRent() {
                                     </div>
                                     <div>
                                         <Group spacing={4}>
-                                            <Clock size={16}/>
+                                            <Clock size={16} />
                                             <Text>Updated: 2 days ago</Text>
                                         </Group>
                                         <Text>
