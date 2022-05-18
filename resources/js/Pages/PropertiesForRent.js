@@ -20,6 +20,7 @@ import {
 } from "@/Components/PropertiesFilter";
 
 import Base from "@/Layouts/Base";
+import { Head } from "@inertiajs/inertia-react";
 
 const useStyles = createStyles((theme) => ({
     container__main: {
@@ -67,6 +68,7 @@ function PropertiesForRent(props) {
 
     return (
         <Base {...props}>
+            <Head title="Properties for Rent"/>
             <Container
                 size="lg"
                 sx={{

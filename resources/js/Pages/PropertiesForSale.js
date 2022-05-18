@@ -19,6 +19,7 @@ import {
     PropertyPriceRangeFilter,
     PropertyTypeFilter,
 } from "@/Components/PropertiesFilter";
+import { Head } from "@inertiajs/inertia-react";
 
 const useStyles = createStyles((theme) => ({
     container__main: {
@@ -66,6 +67,7 @@ function PropertiesForSale(props) {
 
     return (
         <Base {...props}>
+            <Head title="Properties for Sale" />
             <Container
                 size="lg"
                 sx={{
