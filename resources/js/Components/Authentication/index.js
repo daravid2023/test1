@@ -1,23 +1,29 @@
-import {useState} from "react";
+import { useState } from "react";
 
-import {Modal} from "@mantine/core";
+import { Box, Modal } from "@mantine/core";
 
 import AuthenticationForm from "./AuthenticationForm.js";
 import AuthenticationButton from "./AuthenticationButton.js";
 
-function Authentication({auth}) {
+function Authentication({ auth }) {
     const [opened, setOpened] = useState(false);
 
     return (
         <>
-            <AuthenticationButton setOpened={setOpened} auth={auth}/>
+            <AuthenticationButton setOpened={setOpened} auth={auth} />
             <Modal
                 centered
                 title="Authentication"
                 opened={opened}
                 onClose={() => setOpened(false)}
             >
-                <AuthenticationForm/>
+                <Box
+                    sx={{
+                        position: "relative",
+                    }}
+                >
+                    <AuthenticationForm />
+                </Box>
             </Modal>
         </>
     );
