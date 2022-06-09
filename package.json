@@ -31,6 +31,7 @@
     "dependencies": {
         "@mantine/core": "^4.2.4",
         "@mantine/hooks": "^4.2.4",
+        "framer-motion": "^6.3.11",
         "immer": "^9.0.14",
         "tabler-icons-react": "^1.48.0"
     }

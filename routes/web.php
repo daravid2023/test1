@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PropertiesController\PropertiesForRentController;
+use App\Http\Controllers\PropertiesController\PropertiesForSaleController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,11 +17,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'show'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/properties-for-rent', [\App\Http\Controllers\PropertiesForRentController::class, 'show'])->name('properties-for-rent');
+Route::get('/properties-for-sale', [PropertiesForSaleController::class, 'index'])->name('properties-for-sale');
 
-Route::get('/properties-for-sale', [\App\Http\Controllers\PropertiesForSaleController::class, 'show'])->name('properties-for-sale');
+Route::get('/properties-for-rent', [PropertiesForRentController::class, 'index'])->name('properties-for-rent');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

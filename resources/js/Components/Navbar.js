@@ -152,7 +152,7 @@ export default function Navbar({ auth }) {
         <Header height={HEADER_HEIGHT} className={classes.root}>
             <Container className={classes.header}>
                 <Link href={route("home")} as="h3" className={classes.logo}>
-                    LOGO
+                    H4ME
                 </Link>
 
                 <Group spacing={5} className={classes.links}>
@@ -161,7 +161,7 @@ export default function Navbar({ auth }) {
                         <Authentication auth={auth} />
                         {auth.user && (
                             <p className={classes.greet}>
-                                Hello, {" "}
+                                Hello,{" "}
                                 <span className={classes.username}>
                                     {auth?.user?.name}
                                 </span>

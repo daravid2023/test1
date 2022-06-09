@@ -1,7 +1,8 @@
-import React from "react";
 import { Title, Button, createStyles } from "@mantine/core";
 import { Link, Head } from "@inertiajs/inertia-react";
+
 import { ArrowRight } from "tabler-icons-react";
+
 import Base from "@/Layouts/Base";
 
 const useStyles = createStyles((theme) => ({

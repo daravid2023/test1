@@ -8,7 +8,7 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
-    public function show(): Response
+    public function index(): Response
     {
         return Inertia::render('Home');
     }
