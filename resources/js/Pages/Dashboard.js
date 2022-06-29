@@ -1,11 +1,10 @@
 import React from "react";
-import Base from "@/Layouts/Base";
 import { Head } from "@inertiajs/inertia-react";
+import Admin from "../Layouts/Admin";
 
 export default function Dashboard(props) {
     return (
-        <Base
-            auth={props.auth}
+        <Admin
             errors={props.errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
@@ -24,6 +23,6 @@ export default function Dashboard(props) {
                     </div>
                 </div>
             </div>
-        </Base>
+        </Admin>
     );
 }

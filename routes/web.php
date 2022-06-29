@@ -23,6 +23,8 @@ Route::get('/properties-for-sale', [PropertiesForSaleController::class, 'index']
 
 Route::get('/properties-for-rent', [PropertiesForRentController::class, 'index'])->name('properties-for-rent');
 
+Route::post('/properties-for-rent', [PropertiesForRentController::class, 'store'])->name('properties-for-rent-store');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
