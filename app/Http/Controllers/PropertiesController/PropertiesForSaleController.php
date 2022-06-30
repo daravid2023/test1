@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\PropertiesController;
 
+use App\Http\Controllers\Controller;
 use App\Models\PropertyForSale;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class PropertiesForSaleController extends BasePropertiesController
+class PropertiesForSaleController extends Controller
 {
     private $model;
 

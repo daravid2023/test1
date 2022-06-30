@@ -16,7 +16,6 @@ const useStyles = createStyles(() => ({
 
 const residentialTypes = ["Apartment", "Condo", "House", "Land"];
 const commercialTypes = ["Offices", "Retail", "Shophouses", "Hotel"];
-const boreyTypes = ["House", "Flat House", "Villa", "Twin Villa", "Shop House"];
 
 function PropertyTypeFilter() {
     const { classes } = useStyles();
@@ -61,15 +60,6 @@ function PropertyTypeFilter() {
                     <Tabs.Tab label="Commercial">
                         <div className={classes.property_types_container}>
                             {commercialTypes.map((type) => (
-                                <Button key={type} compact color="blue">
-                                    {type}
-                                </Button>
-                            ))}
-                        </div>
-                    </Tabs.Tab>
-                    <Tabs.Tab label="Borey">
-                        <div className={classes.property_types_container}>
-                            {boreyTypes.map((type) => (
                                 <Button key={type} compact color="blue">
                                     {type}
                                 </Button>

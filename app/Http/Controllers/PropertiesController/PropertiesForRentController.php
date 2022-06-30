@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers\PropertiesController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\PropertyForRent;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
-use Inertia\Response;
 
-class PropertiesForRentController extends BasePropertiesController
+class PropertiesForRentController extends Controller
 {
+    private $modal;
 
-    private $model;
-
-    public function __construct(PropertyForRent $propertyForRent)
+    public function __construct(PropertyForRent $modal)
     {
-        $this->model = $propertyForRent;
+        $this->modal = $modal;
     }
 
-    public function index(): Response
+    public function index()
     {
         return Inertia::render('PropertiesForRent', [
-            'properties' => $this->queryData($this->model),
+            'properties' => $this->modal->setLocations(['Location'])->setMaxPrice(1000000)->queryData(),
         ]);
     }
 
