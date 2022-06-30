@@ -1,6 +1,6 @@
 import { Box } from "@mantine/core";
 
-export function CarouselItem({ id, desc, width }) {
+export function CarouselItem({ width, image_url }) {
     return (
         <Box
             sx={{
@@ -8,7 +8,13 @@ export function CarouselItem({ id, desc, width }) {
                 flexShrink: 0,
             }}
         >
-            <img src="/static/brand/hero.jpg" alt="hero" />
+            <img
+                src={
+                    (image_url && `storage/${image_url.split("public/")[1]}`) ||
+                    "/static/brand/hero.jpg"
+                }
+                alt="hero"
+            />
         </Box>
     );
 }

@@ -1,11 +1,13 @@
-import { Container, Divider, Text } from "@mantine/core";
+import { Container, Divider, Stack, Text } from "@mantine/core";
 import { Head } from "@inertiajs/inertia-react";
 
 import Base from "@/Layouts/Base";
 import Listing from "../Components/Listing";
 import PropertiesFilter from "../Components/PropertiesFilter";
+import React from "react";
 
-function PropertiesForRent(props) {
+function PropertiesForRent({ properties, ...props }) {
+    console.log(properties)
     return (
         <Base {...props}>
             <Head title="Properties for Rent" />
@@ -16,9 +18,17 @@ function PropertiesForRent(props) {
                 }}
             >
                 <PropertiesFilter />
-                <Text size="xl" my="sm">Properties For Rent</Text>
+                <Text size="xl" my="sm">
+                    Properties For Rent
+                </Text>
                 <Divider my="sm" />
-                <Listing />
+                <Stack spacing="md">
+                    {properties.data.map((property, index) => (
+                        <React.Fragment key={index}>
+                            <Listing property={property} />
+                        </React.Fragment>
+                    ))}
+                </Stack>
             </Container>
         </Base>
     );

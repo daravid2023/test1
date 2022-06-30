@@ -20,7 +20,6 @@ const HEADER_HEIGHT = 60;
 const useStyles = createStyles((theme) => ({
     root: {
         position: "sticky",
-        zIndex: 1,
     },
 
     logo: {
@@ -33,7 +32,6 @@ const useStyles = createStyles((theme) => ({
         top: HEADER_HEIGHT,
         left: 0,
         right: 0,
-        zIndex: 0,
         borderTopRightRadius: 0,
         borderTopLeftRadius: 0,
         borderTopWidth: 0,

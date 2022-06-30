@@ -9,7 +9,7 @@ function ProfileDropDown({ username }) {
             <Menu.Label>{username}</Menu.Label>
 
             <Link href={route("dashboard")} as="span">
-                <Menu.Item icon={<Database size={14} />}>My listings</Menu.Item>
+                <Menu.Item icon={<Database size={14} />}>Dashboard</Menu.Item>
             </Link>
 
             <Divider />

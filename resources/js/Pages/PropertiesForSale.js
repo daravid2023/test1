@@ -5,7 +5,7 @@ import Base from "@/Layouts/Base";
 import Listing from "../Components/Listing";
 import PropertiesFilter from "../Components/PropertiesFilter";
 
-function PropertiesForSale(props) {
+function PropertiesForSale({ properties, ...props }) {
     return (
         <Base {...props}>
             <Head title="Properties for Sale" />
@@ -20,7 +20,11 @@ function PropertiesForSale(props) {
                     Properties For Sale
                 </Text>
                 <Divider my="sm" />
-                <Listing />
+                {properties.map((property, index) => (
+                    <React.Fragment key={index}>
+                        <Listing property={property} />
+                    </React.Fragment>
+                ))}
             </Container>
         </Base>
     );

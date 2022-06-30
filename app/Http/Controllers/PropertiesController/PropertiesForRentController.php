@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PropertiesController;
 use Illuminate\Http\Request;
 
 use App\Models\PropertyForRent;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -21,8 +22,13 @@ class PropertiesForRentController extends BasePropertiesController
     public function index(): Response
     {
         return Inertia::render('PropertiesForRent', [
-            'properties' => $this->queryAll($this->model),
+            'properties' => $this->queryData($this->model),
         ]);
+    }
+
+    public function show()
+    {
+        return Inertia::render('PropertiesForRentShow');
     }
 
     public function store(Request $request)
@@ -34,48 +40,29 @@ class PropertiesForRentController extends BasePropertiesController
         $property->description = $request->description;
         $property->price = $request->price;
 
-        $storedFilePath = [];
+        $storedFilePaths = [
+            'image_one' => null,
+            'image_two' => null,
+            'image_three' => null,
+            'image_four' => null,
+            'image_five' => null
+        ];
 
-        if ($request->hasFile('image_one')) {
-            $storedFilePath['image_one'] = $request->file('image_one')->store('public');
-        } elseif ($request->hasFile('image_two')) {
-            $storedFilePath['image_two'] = $request->file('image_two')->store('public');
-        } elseif ($request->hasFile('image_three')) {
-            $storedFilePath['image_three'] = $request->file('image_three')->store('public');
-        } elseif ($request->hasFile('image_four')) {
-            $storedFilePath['image_four'] = $request->file('image_four')->store('public');
-        } elseif ($request->hasFile('image_five')) {
-            $storedFilePath['image_five'] = $request->file('image_five')->store('public');
+        foreach ($storedFilePaths as $key => $_) {
+            if ($request->hasFile($key)) {
+                $storedFilePaths[$key] = $request->file($key)->store('public');
+            }
         }
 
-        // if ($request->image_one) {
-        //     $property->image_one = $storedFilePath['image_one'];
-        // } elseif ($request->image_two) {
-        //     $property->image_two = $storedFilePath['image_two'];
-        // } elseif ($request->image_three) {
-        //     $property->image_three = $storedFilePath['image_three'];
-        // } elseif ($request->image_four) {
-        //     $property->image_four = $storedFilePath['image_four'];
-        // } elseif ($request->image_five) {
-        //     $property->image_five = $storedFilePath['image_five'];
-        // }
-
-        if ($storedFilePath['image_one']) {
-            $property->image_one = $storedFilePath['image_one'];
-        } elseif ($storedFilePath['image_two']) {
-            $property->image_two = $storedFilePath['image_two'];
-        } elseif ($storedFilePath['image_three']) {
-            $property->image_three = $storedFilePath['image_three'];
-        } elseif ($storedFilePath['image_four']) {
-            $property->image_four = $storedFilePath['image_four'];
-        } elseif ($storedFilePath['image_five']) {
-            $property->image_five = $storedFilePath['image_five'];
-        }
-
+        $property->image_one = $storedFilePaths['image_one'];
+        $property->image_two = $storedFilePaths['image_two'];
+        $property->image_three = $storedFilePaths['image_three'];
+        $property->image_four = $storedFilePaths['image_four'];
+        $property->image_five = $storedFilePaths['image_five'];
         $property->user_id = auth()->user()->id;
 
         $property->save();
 
-        return response()->json([])->setStatusCode(200)->setContentType('application/json');
+        return response()->setStatusCode(200)->setContent('application/json');
     }
 }

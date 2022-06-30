@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BasePropertiesController extends Controller
 {
-    protected function queryAll(Model $model)
+    protected function queryData(Model $model)
     {
-        return $model->all();
+        return $model->paginate(20);
     }
 }

@@ -6,30 +6,32 @@ import { CarouselItem } from "./CarouselItem";
 const MotionBox = motion(Box);
 
 export function Carousel({ carousel, currentIndex }) {
-  const [ref, { width }] = useBoundingClientRect();
+    const [ref, { width }] = useBoundingClientRect();
 
-  return (
-    <Box
-      ref={ref}
-      sx={() => ({
-        margin: "0 auto",
-        overflowX: "hidden",
-      })}
-    >
-      <MotionBox
-        animate={{
-          x: -(("undefined" == typeof width ? 0 : width) * currentIndex),
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        sx={() => ({
-          display: "flex",
-          flexWrap: "nowrap",
-        })}
-      >
-        {carousel.map((content) => (
-          <CarouselItem key={content.id} width={width} {...content} />
-        ))}
-      </MotionBox>
-    </Box>
-  );
+    return (
+        <Box
+            ref={ref}
+            sx={() => ({
+                margin: "0 auto",
+                overflowX: "hidden",
+            })}
+        >
+            <MotionBox
+                animate={{
+                    x: -(
+                        ("undefined" == typeof width ? 0 : width) * currentIndex
+                    ),
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                sx={() => ({
+                    display: "flex",
+                    flexWrap: "nowrap",
+                })}
+            >
+                {carousel.map((link, index) => (
+                    <CarouselItem key={index} width={width} image_url={link} />
+                ))}
+            </MotionBox>
+        </Box>
+    );
 }

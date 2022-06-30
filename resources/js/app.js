@@ -18,6 +18,7 @@ createInertiaApp({
                 withNormalizeCSS
                 theme={{
                     other: {
+                        lineHeights: [1.2, 1.4, 1.6, 1.8, 1.95],
                         fontFamilySecondary:
                             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;",
                     },

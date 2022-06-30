@@ -1,5 +1,6 @@
 import { createStyles, Text, Title, Box, useMantineTheme } from "@mantine/core";
 import { ArrowLeft, ArrowRight, CurrentLocation } from "tabler-icons-react";
+import toArrayIgnoreNull from "../../hooks/carousel/formatter/toArrayIgnoreNull";
 import { useArrayCarousel } from "../../hooks/carousel/useArrayCarousel";
 import { Carousel } from "./Carousel";
 
@@ -55,35 +56,17 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const INITIAL_DATA = [
-    {
-        id: 1,
-        desc: "yikes",
-    },
-    {
-        id: 2,
-        desc: "chips",
-    },
-    {
-        id: 3,
-        desc: "monke",
-    },
-    {
-        id: 4,
-        desc: "dong",
-    },
-];
-
-function Listing() {
+function Listing({ property }) {
     const theme = useMantineTheme();
-    const { next, prev, hasNext, hasPrev, reset, ...restCarousel } =
-        useArrayCarousel(INITIAL_DATA);
-
     const { classes } = useStyles();
+
+    const { next, prev, hasNext, hasPrev, reset, ...restCarousel } =
+        useArrayCarousel(property, toArrayIgnoreNull);
+
     return (
         <div className={classes.container__main}>
             <div className={classes.container__title}>
-                <Title order={4}>Okide; The royal condonium</Title>
+                <Title order={4}>{property.title}</Title>
             </div>
 
             <div className={classes.container__content}>
@@ -149,8 +132,8 @@ function Listing() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <Title order={5}>Project A</Title>
-                        <Title order={5}>$73,000</Title>
+                        <Title order={5}>{property.heading}</Title>
+                        <Title order={5}>${property.price}</Title>
                     </Box>
                     <Box
                         sx={{
@@ -161,9 +144,7 @@ function Listing() {
                     >
                         <div className={classes.details}>
                             <CurrentLocation />
-                            <Text size="sm">
-                                Preaek Aeng, Chbar Ampov, Phnom Penh
-                            </Text>
+                            <Text size="sm">{property.property_location}</Text>
                         </div>
                     </Box>
                 </div>
