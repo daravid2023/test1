@@ -17,10 +17,22 @@ class PropertiesForRentController extends Controller
         $this->modal = $modal;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $types = [];
+
+        $query = $request->query();
+        if ($request->has('property_type')) {
+            if (array_key_exists('residential', $query['property_type'])) {
+                $types = array_merge($query['property_type']['residential'], $types);
+            } elseif (array_key_exists('commercial', $query['property_type'])) {
+                $types = array_merge($query['property_type']['commercial'], $types);
+            };
+        }
+
         return Inertia::render('PropertiesForRent', [
-            'properties' => $this->modal->setLocations(['Location'])->setMaxPrice(1000000)->queryData(),
+            'properties' => $this->modal->setLocations($request->query('locations', null))->setMaxPrice($request->query('max_price', null))->queryData(),
+            'filters' => $request->only('locations', 'property_type', 'min_price', 'max_price')
         ]);
     }
 
@@ -35,6 +47,7 @@ class PropertiesForRentController extends Controller
         $property->title = $request->title;
         $property->heading = $request->heading;
         $property->property_location = $request->property_location;
+        $property->property_type = $request->property_type;
         $property->description = $request->description;
         $property->price = $request->price;
 
@@ -61,6 +74,6 @@ class PropertiesForRentController extends Controller
 
         $property->save();
 
-        return response()->setStatusCode(200)->setContent('application/json');
+        return back(200);
     }
 }

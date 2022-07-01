@@ -11,22 +11,27 @@ import {
     createStyles,
 } from "@mantine/core";
 
+import { usePage } from "@inertiajs/inertia-react";
+
 import { Archive } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
     listing_item: {
         borderRadius: theme.radius.sm,
         padding: theme.spacing.md - theme.spacing.xs,
-        color: theme.colors.gray[9],
+        color: theme.colors.dark[10],
         cursor: "pointer",
-        ":hover": {
-            backgroundColor: theme.colors.gray[2],
-        },
+    },
+
+    active: {
+        backgroundColor: theme.colors.gray[3],
+        fontWeight: 600,
     },
 }));
 
 export default function Dashboard({ children }) {
-    const { classes } = useStyles();
+    const { component } = usePage();
+    const { classes, cx } = useStyles();
     return (
         <AppShell
             padding="md"
@@ -53,7 +58,13 @@ export default function Dashboard({ children }) {
                         </Box>
                         <Stack spacing="xs" mt="xs">
                             <Box>
-                                <Text className={classes.listing_item}>
+                                <Text
+                                    className={cx(classes.listing_item, {
+                                        [classes.active]:
+                                            component ==
+                                            "PropertiesForSaleShow",
+                                    })}
+                                >
                                     Properties For Sale
                                 </Text>
                             </Box>
@@ -61,7 +72,13 @@ export default function Dashboard({ children }) {
                                 as="div"
                                 href={route("properties-for-rent-show")}
                             >
-                                <Text className={classes.listing_item}>
+                                <Text
+                                    className={cx(classes.listing_item, {
+                                        [classes.active]:
+                                            component ==
+                                            "PropertiesForRentShow",
+                                    })}
+                                >
                                     Properties For Rent
                                 </Text>
                             </Link>

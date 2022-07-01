@@ -1,13 +1,13 @@
-import { Container, Divider, Stack, Text } from "@mantine/core";
+import { Container, Divider, Pagination, Stack, Text } from "@mantine/core";
 import { Head } from "@inertiajs/inertia-react";
 
 import Base from "@/Layouts/Base";
 import Listing from "../Components/Listing";
 import PropertiesFilter from "../Components/PropertiesFilter";
 import React from "react";
+import { Inertia } from "@inertiajs/inertia";
 
 function PropertiesForRent({ properties, ...props }) {
-    console.log(properties)
     return (
         <Base {...props}>
             <Head title="Properties for Rent" />
@@ -29,6 +29,18 @@ function PropertiesForRent({ properties, ...props }) {
                         </React.Fragment>
                     ))}
                 </Stack>
+                <Divider my="md"/>
+                <Pagination
+                    initialPage={properties.current_page}
+                    total={Math.ceil(properties.total / properties.per_page)}
+                    onChange={(page) =>
+                        Inertia.visit(properties.path, {
+                            data: {
+                                page: page,
+                            },
+                        })
+                    }
+                />
             </Container>
         </Base>
     );

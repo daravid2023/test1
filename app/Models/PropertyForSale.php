@@ -10,4 +10,9 @@ class PropertyForSale extends Model
     use HasFactory;
 
     protected $table = 'properties_for_sale';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

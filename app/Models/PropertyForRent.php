@@ -11,4 +11,9 @@ class PropertyForRent extends Model
     use HasFactory, DataPaginationQueryFilter;
 
     protected $table = 'properties_for_rent';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

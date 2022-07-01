@@ -45,6 +45,9 @@ const useStyles = createStyles((theme) => ({
     },
 
     container__description: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         margin: "1.111rem",
         color: theme.colors.gray[7],
         flex: 2,
@@ -126,27 +129,32 @@ function Listing({ property }) {
                     <Carousel {...restCarousel} />
                 </div>
                 <div className={classes.container__description}>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <Title order={5}>{property.heading}</Title>
-                        <Title order={5}>${property.price}</Title>
-                    </Box>
-                    <Box
-                        sx={{
-                            marginTop: "1.111rem",
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <div className={classes.details}>
-                            <CurrentLocation />
-                            <Text size="sm">{property.property_location}</Text>
-                        </div>
-                    </Box>
+                    <div>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            <Title order={5}>{property.heading}</Title>
+                            <Title order={5}>${property.price}</Title>
+                        </Box>
+                        <Box
+                            sx={{
+                                marginTop: "1.111rem",
+                                display: "flex",
+                                flexDirection: "column",
+                            }}
+                        >
+                            <div className={classes.details}>
+                                <CurrentLocation />
+                                <Text size="sm">
+                                    {property.property_location}
+                                </Text>
+                            </div>
+                        </Box>
+                    </div>
+                    <Text>{property.description}</Text>
                 </div>
             </div>
         </div>

@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import DropdownButton from "@/Components/DropdownButton";
 import { ArrowDown, ArrowUp } from "tabler-icons-react";
 import { Button, createStyles, Popover, Tabs } from "@mantine/core";
+
+import { FilterContext } from "../../Context/FilterContext";
+import { commercialTypes, residentialTypes } from "../../Enum";
 
 const useStyles = createStyles(() => ({
     property_types_container: {
@@ -14,13 +17,16 @@ const useStyles = createStyles(() => ({
     },
 }));
 
-const residentialTypes = ["Apartment", "Condo", "House", "Land"];
-const commercialTypes = ["Offices", "Retail", "Shophouses", "Hotel"];
-
 function PropertyTypeFilter() {
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
+
+    const {
+        data: { property_type },
+        toggleResidentialProperty,
+        toggleCommercialProperty,
+    } = useContext(FilterContext);
 
     return (
         <>
@@ -51,7 +57,18 @@ function PropertyTypeFilter() {
                     <Tabs.Tab label="Residential">
                         <div className={classes.property_types_container}>
                             {residentialTypes.map((type) => (
-                                <Button key={type} compact color="blue">
+                                <Button
+                                    onClick={() =>
+                                        toggleResidentialProperty(type)
+                                    }
+                                    key={type}
+                                    compact
+                                    color={
+                                        property_type?.residential?.[type]
+                                            ? "indigo"
+                                            : "blue"
+                                    }
+                                >
                                     {type}
                                 </Button>
                             ))}
@@ -60,7 +77,18 @@ function PropertyTypeFilter() {
                     <Tabs.Tab label="Commercial">
                         <div className={classes.property_types_container}>
                             {commercialTypes.map((type) => (
-                                <Button key={type} compact color="blue">
+                                <Button
+                                    onClick={() =>
+                                        toggleCommercialProperty(type)
+                                    }
+                                    key={type}
+                                    compact
+                                    color={
+                                        property_type?.commercial?.[type]
+                                            ? "indigo"
+                                            : "blue"
+                                    }
+                                >
                                     {type}
                                 </Button>
                             ))}

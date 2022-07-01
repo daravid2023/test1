@@ -1,7 +1,12 @@
 import { createStyles, NativeSelect, Popover, Text } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ArrowDown, ArrowUp } from "tabler-icons-react";
 import DropdownButton from "@/Components/DropdownButton";
+
+import {
+    FilterContext,
+    startingEndingPrices,
+} from "../../Context/FilterContext";
 
 const useStyles = createStyles((theme) => ({
     price_range__container: {
@@ -12,30 +17,15 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const startingEndingPrices = [
-    20, 40, 60, 80, 100, 125, 150, 175, 200, 250, 300, 400, 500, 600, 700, 800,
-    900, 1000, 1500, 2000,
-].map((price) => "$" + String(price * 1000));
-
 function PropertyPriceRangeFilter() {
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
 
-    const [startingPriceRange, setStartingPriceRange] = useState(
-        startingEndingPrices[0]
-    );
-    const [endingPriceRange, setEndingPriceRange] = useState(
-        startingEndingPrices[0]
-    );
-
-    useEffect(() => {
-        if (
-            Number(endingPriceRange.substring(1)) <
-            Number(startingPriceRange.substring(1))
-        ) {
-            setStartingPriceRange(startingEndingPrices[0]);
-        }
-    }, [startingPriceRange, endingPriceRange]);
+    const {
+        data: { min_price, max_price },
+        setMinPriceRange,
+        setMaxPriceRange,
+    } = useContext(FilterContext);
 
     return (
         <Popover
@@ -63,19 +53,23 @@ function PropertyPriceRangeFilter() {
         >
             <div className={classes.price_range__container}>
                 <NativeSelect
-                    value={startingPriceRange}
+                    value={`$${min_price}`}
                     onChange={(event) =>
-                        setStartingPriceRange(event.currentTarget.value)
+                        setMinPriceRange(
+                            Number(event.currentTarget.value.split("$")[1])
+                        )
                     }
-                    data={startingEndingPrices}
+                    data={startingEndingPrices.map((price) => `$${price}`)}
                 />
                 <Text>-</Text>
                 <NativeSelect
-                    value={endingPriceRange}
+                    value={`$${max_price}`}
                     onChange={(event) =>
-                        setEndingPriceRange(event.currentTarget.value)
+                        setMaxPriceRange(
+                            Number(event.currentTarget.value.split("$")[1])
+                        )
                     }
-                    data={startingEndingPrices}
+                    data={startingEndingPrices.map((price) => `$${price}`)}
                 />
             </div>
         </Popover>

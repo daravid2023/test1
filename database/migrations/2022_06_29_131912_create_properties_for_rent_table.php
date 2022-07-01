@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('heading', 77);
             $table->string('property_location', 100);
+            $table->string('property_type', 100);
             $table->string('description', 255);
             $table->decimal('price', unsigned: true);
             $table->string('image_one');

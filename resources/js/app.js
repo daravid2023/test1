@@ -5,9 +5,12 @@ import { render } from "react-dom";
 import { MantineProvider } from "@mantine/core";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
+import { enableMapSet } from "immer";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+
+enableMapSet();
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
