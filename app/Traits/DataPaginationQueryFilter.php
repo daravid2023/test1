@@ -45,6 +45,6 @@ trait DataPaginationQueryFilter
             $query->where('price', '>=', $min_price);
         })->when($this->max_price, function ($query, $max_price) {
             $query->where('price', '<=', $max_price);
-        })->paginate(20);
+        })->join('users', 'users.id', '=', $this->table . '.user_id')->select($this->table . '.*', 'users.name')->paginate(20);
     }
 }

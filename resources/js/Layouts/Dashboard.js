@@ -17,15 +17,15 @@ import { Archive } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
     listing_item: {
-        borderRadius: theme.radius.sm,
         padding: theme.spacing.md - theme.spacing.xs,
         color: theme.colors.dark[10],
         cursor: "pointer",
     },
 
     active: {
-        backgroundColor: theme.colors.gray[3],
         fontWeight: 600,
+        borderLeft: "4px solid",
+        borderRightColor: theme.colors.dark[2],
     },
 }));
 
@@ -36,7 +36,13 @@ export default function Dashboard({ children }) {
         <AppShell
             padding="md"
             navbar={
-                <Navbar width={{ base: 300 }}>
+                <Navbar
+                    width={{ base: 300 }}
+                    sx={{
+                        position: "sticky",
+                        top: 0,
+                    }}
+                >
                     <Box p="sm">
                         <Text size="xl" weight={500} transform="uppercase">
                             Dashboard

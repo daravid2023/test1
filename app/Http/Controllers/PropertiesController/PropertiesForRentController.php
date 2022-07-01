@@ -74,6 +74,6 @@ class PropertiesForRentController extends Controller
 
         $property->save();
 
-        return back(200);
+        return redirect(route('properties-for-rent-show'));
     }
 }

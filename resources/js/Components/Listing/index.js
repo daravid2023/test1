@@ -4,6 +4,8 @@ import toArrayIgnoreNull from "../../hooks/carousel/formatter/toArrayIgnoreNull"
 import { useArrayCarousel } from "../../hooks/carousel/useArrayCarousel";
 import { Carousel } from "./Carousel";
 
+import { format, addHours } from "date-fns";
+
 const useStyles = createStyles((theme) => ({
     container__main: {
         width: "100%",
@@ -137,7 +139,13 @@ function Listing({ property }) {
                             }}
                         >
                             <Title order={5}>{property.heading}</Title>
-                            <Title order={5}>${property.price}</Title>
+                            <Title order={5}>
+                                $
+                                {property.price.replace(
+                                    /\B(?=(\d{3})+(?!\d))/g,
+                                    ","
+                                )}
+                            </Title>
                         </Box>
                         <Box
                             sx={{
@@ -154,7 +162,24 @@ function Listing({ property }) {
                             </div>
                         </Box>
                     </div>
-                    <Text>{property.description}</Text>
+                    <Box
+                        sx={{
+                            marginTop: theme.spacing.sm,
+                            display: "flex",
+                            alignItems: "baseline",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <Text>{property.description}</Text>
+                        <Text size="sm">
+                            {format(
+                                new Date(
+                                    addHours(Date.parse(property.created_at), 7)
+                                ),
+                                "dd/MM/yyy, hh:mm a"
+                            )}
+                        </Text>
+                    </Box>
                 </div>
             </div>
         </div>
