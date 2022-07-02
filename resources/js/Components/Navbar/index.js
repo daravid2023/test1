@@ -112,11 +112,13 @@ const links = [
     {
         link: "properties-for-sale",
         label: "For Sale",
+        name: "PropertiesForSale",
         id: 1,
     },
     {
         link: "properties-for-rent",
         label: "For Rent",
+        name: "PropertiesForRent",
         id: 2,
     },
 ];
@@ -125,14 +127,14 @@ export default function Navbar({ auth }) {
     const [opened, toggleOpened] = useBooleanToggle(false);
     const { classes, cx } = useStyles();
 
-    const { url } = usePage();
+    const { component } = usePage();
 
     const navLinks = links.map((link) => (
         <Link
             key={link.label}
             href={route(link.link)}
             className={cx(classes.link, {
-                [classes.linkActive]: url === "/" + link.link,
+                [classes.linkActive]: component == link.name,
             })}
         >
             {link.label}
@@ -170,7 +172,7 @@ export default function Navbar({ auth }) {
                             style={styles}
                         >
                             {navLinks}
-                            <Authentication auth={auth}/>
+                            <Authentication auth={auth} />
                         </Paper>
                     )}
                 </Transition>

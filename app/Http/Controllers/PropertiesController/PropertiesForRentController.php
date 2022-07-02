@@ -10,11 +10,11 @@ use Inertia\Inertia;
 
 class PropertiesForRentController extends Controller
 {
-    private $modal;
+    private $model;
 
-    public function __construct(PropertyForRent $modal)
+    public function __construct(PropertyForRent $model)
     {
-        $this->modal = $modal;
+        $this->model = $model;
     }
 
     public function index(Request $request)
@@ -31,7 +31,7 @@ class PropertiesForRentController extends Controller
         }
 
         return Inertia::render('PropertiesForRent', [
-            'properties' => $this->modal->setLocations($request->query('locations', null))->setMaxPrice($request->query('max_price', null))->queryData(),
+            'properties' => $this->model->setLocations($request->query('locations', null))->setMaxPrice($request->query('max_price', null))->queryData(),
             'filters' => $request->only('locations', 'property_type', 'min_price', 'max_price')
         ]);
     }

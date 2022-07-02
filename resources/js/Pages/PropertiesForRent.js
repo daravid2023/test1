@@ -17,7 +17,7 @@ function PropertiesForRent({ properties, ...props }) {
                     margin: "1.111rem auto",
                 }}
             >
-                <PropertiesFilter />
+                <PropertiesFilter url={"properties-for-rent"} />
                 <Text size="xl" my="sm">
                     Properties For Rent
                 </Text>
@@ -29,12 +29,12 @@ function PropertiesForRent({ properties, ...props }) {
                         </React.Fragment>
                     ))}
                 </Stack>
-                <Divider my="md"/>
+                <Divider my="md" />
                 <Pagination
                     initialPage={properties.current_page}
                     total={Math.ceil(properties.total / properties.per_page)}
                     onChange={(page) =>
-                        Inertia.visit(properties.path, {
+                        Inertia.visit(route("properties-for-rent"), {
                             data: {
                                 page: page,
                             },

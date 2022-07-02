@@ -1,9 +1,10 @@
-import { Container, Divider, Text } from "@mantine/core";
+import { Container, Divider, Pagination, Stack, Text } from "@mantine/core";
 import { Head } from "@inertiajs/inertia-react";
 
 import Base from "@/Layouts/Base";
 import Listing from "../Components/Listing";
 import PropertiesFilter from "../Components/PropertiesFilter";
+import { Inertia } from "@inertiajs/inertia";
 
 function PropertiesForSale({ properties, ...props }) {
     return (
@@ -15,16 +16,30 @@ function PropertiesForSale({ properties, ...props }) {
                     margin: "1.111rem auto",
                 }}
             >
-                <PropertiesFilter />
+                <PropertiesFilter url={"properties-for-sale"} />
                 <Text size="xl" my="sm">
                     Properties For Sale
                 </Text>
                 <Divider my="sm" />
-                {properties.map((property, index) => (
-                    <React.Fragment key={index}>
-                        <Listing property={property} />
-                    </React.Fragment>
-                ))}
+                <Stack spacing="md">
+                    {properties.data.map((property, index) => (
+                        <React.Fragment key={index}>
+                            <Listing property={property} />
+                        </React.Fragment>
+                    ))}
+                </Stack>
+                <Divider my="md" />
+                <Pagination
+                    initialPage={properties.current_page}
+                    total={Math.ceil(properties.total / properties.per_page)}
+                    onChange={(page) =>
+                        Inertia.visit(route("properties-for-sale"), {
+                            data: {
+                                page: page,
+                            },
+                        })
+                    }
+                />
             </Container>
         </Base>
     );

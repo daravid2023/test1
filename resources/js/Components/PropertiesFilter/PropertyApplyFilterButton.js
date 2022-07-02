@@ -9,19 +9,16 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-function PropertyApplyFilterButton() {
+function PropertyApplyFilterButton({ pageUrl }) {
     const { classes } = useStyles();
     const { data } = useContext(FilterContext);
 
     const handleClick = () => {
         Inertia.get(
-            route("properties-for-rent"),
+            route(pageUrl),
             {
                 ...data,
                 locations: Array.from(data.locations.keys()),
-                // property_type: Object.keys(
-                //     data.property_type.residential
-                // ).concat(Object.keys(data.property_type.commercial)),
             },
             {
                 preserveState: true,

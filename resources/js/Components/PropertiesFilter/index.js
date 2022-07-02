@@ -6,7 +6,7 @@ import PropertyLocationFilter from "./PropertyLocationFilter";
 import PropertyPriceRangeFilter from "./PropertyPriceRangeFilter";
 import PropertyTypeFilter from "./PropertyTypeFilter";
 
-function PropertiesFilter() {
+function PropertiesFilter({ url }) {
     return (
         <FilterContextProvider>
             <Grid>
@@ -20,7 +20,7 @@ function PropertiesFilter() {
                     <PropertyPriceRangeFilter />
                 </Grid.Col>
                 <Grid.Col sm={2}>
-                    <PropertyApplyFilterButton />
+                    <PropertyApplyFilterButton pageUrl={url} />
                 </Grid.Col>
             </Grid>
         </FilterContextProvider>

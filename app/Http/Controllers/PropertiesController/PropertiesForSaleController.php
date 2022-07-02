@@ -19,7 +19,7 @@ class PropertiesForSaleController extends Controller
     public function index(): Response
     {
         return Inertia::render('PropertiesForSale', [
-            'properties' => $this->queryAll($this->model)
+            'properties' => $this->model->queryData()
         ]);
     }
 }
