@@ -30,6 +30,8 @@ class PropertiesForRentController extends Controller
             };
         }
 
+        dd($request);
+
         return Inertia::render('PropertiesForRent', [
             'properties' => $this->model->setLocations($request->query('locations', null))->setMaxPrice($request->query('max_price', null))->queryData()->withQueryString(),
             'filters' => $request->only('locations', 'property_type', 'min_price', 'max_price')
