@@ -17,7 +17,7 @@ function PropertiesForRent({ properties, ...props }) {
                     margin: "1.111rem auto",
                 }}
             >
-                <PropertiesFilter url={"properties-for-rent"} />
+                <PropertiesFilter url={route("properties-for-rent")} />
                 <Text size="xl" my="sm">
                     Properties For Rent
                 </Text>
@@ -34,10 +34,8 @@ function PropertiesForRent({ properties, ...props }) {
                     initialPage={properties.current_page}
                     total={Math.ceil(properties.total / properties.per_page)}
                     onChange={(page) =>
-                        Inertia.visit(route("properties-for-rent"), {
-                            data: {
-                                page: page,
-                            },
+                        Inertia.get(properties.first_page_url, {
+                            page: page,
                         })
                     }
                 />

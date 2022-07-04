@@ -20,7 +20,7 @@ function PropertiesFilter({ url }) {
                     <PropertyPriceRangeFilter />
                 </Grid.Col>
                 <Grid.Col sm={2}>
-                    <PropertyApplyFilterButton pageUrl={url} />
+                    <PropertyApplyFilterButton url={url} />
                 </Grid.Col>
             </Grid>
         </FilterContextProvider>

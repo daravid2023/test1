@@ -1,21 +1,22 @@
 import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
 import { Button, createStyles } from "@mantine/core";
 import { useContext } from "react";
 import { FilterContext } from "../../Context/FilterContext";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
     root: {
         width: "100%",
     },
 }));
 
-function PropertyApplyFilterButton({ pageUrl }) {
+function PropertyApplyFilterButton({ url }) {
     const { classes } = useStyles();
     const { data } = useContext(FilterContext);
 
     const handleClick = () => {
         Inertia.get(
-            route(pageUrl),
+            url,
             {
                 ...data,
                 locations: Array.from(data.locations.keys()),

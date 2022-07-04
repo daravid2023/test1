@@ -33,7 +33,7 @@ function PropertiesForSale({ properties, ...props }) {
                     initialPage={properties.current_page}
                     total={Math.ceil(properties.total / properties.per_page)}
                     onChange={(page) =>
-                        Inertia.visit(route("properties-for-sale"), {
+                        Inertia.visit("properties-for-sale", {
                             data: {
                                 page: page,
                             },
