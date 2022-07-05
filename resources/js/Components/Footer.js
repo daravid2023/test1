@@ -14,15 +14,7 @@ const useStyles = createStyles((theme) => ({
     footer: {
         paddingTop: theme.spacing.xl * 2,
         paddingBottom: theme.spacing.xl * 2,
-        backgroundColor:
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[6]
-                : theme.colors.gray[0],
-        borderTop: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[5]
-                : theme.colors.gray[2]
-        }`,
+        borderTop: `1px solid ${theme.colors.gray[2]}`,
     },
 
     logo: {
@@ -69,10 +61,7 @@ const useStyles = createStyles((theme) => ({
 
     link: {
         display: "block",
-        color:
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[1]
-                : theme.colors.gray[6],
+        color: theme.colors.gray[6],
         fontSize: theme.fontSizes.sm,
         paddingTop: 3,
         paddingBottom: 3,
@@ -87,7 +76,7 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
         marginBottom: theme.spacing.xs / 2,
-        color: theme.colorScheme === "dark" ? theme.white : theme.black,
+        color: theme.black,
     },
 
     afterFooter: {
@@ -97,11 +86,7 @@ const useStyles = createStyles((theme) => ({
         marginTop: theme.spacing.xl,
         paddingTop: theme.spacing.xl,
         paddingBottom: theme.spacing.xl,
-        borderTop: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[4]
-                : theme.colors.gray[2]
-        }`,
+        borderTop: `1px solid ${theme.colors.gray[2]}`,
 
         [theme.fn.smallerThan("sm")]: {
             flexDirection: "column",
@@ -209,21 +194,20 @@ export default function Footer() {
         <footer className={classes.footer}>
             <Container className={classes.inner}>
                 <div className={classes.logo}>
-                    <h3>Logo</h3>
+                    <h3>H4ME</h3>
                     <Text
                         size="xs"
                         color="dimmed"
                         className={classes.description}
                     >
-                        Build fully functional accessible web applications
-                        faster than ever
+                        Search for your forever home
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>
             </Container>
             <Container className={classes.afterFooter}>
                 <Text color="dimmed" size="sm">
-                    © 2022 MyHome. All rights reserved.
+                    © 2022 H4ME. All rights reserved.
                 </Text>
 
                 <Group

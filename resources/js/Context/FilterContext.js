@@ -6,7 +6,6 @@ import {
     useState,
 } from "react";
 import { usePage } from "@inertiajs/inertia-react";
-import _ from "lodash";
 import produce from "immer";
 import locationsArrayToMapAble from "./formatter/locationsArrayToMap";
 
@@ -19,6 +18,8 @@ export const startingEndingPrices = [
 
 function FilterContextProvider({ children }) {
     const { filters } = usePage().props;
+
+    const [shouldApplyFilter, setShouldApplyFilter] = useState(true);
 
     const [data, setData] = useState({
         locations:
@@ -119,9 +120,15 @@ function FilterContextProvider({ children }) {
         }
     }, [data.min_price, data.max_price, setMinPriceRange]);
 
+    useEffect(() => {
+        setShouldApplyFilter(true);
+    }, [data, setShouldApplyFilter]);
+
     const context = {
         data,
         isNoLocationChosen,
+        shouldApplyFilter,
+        setShouldApplyFilter,
         toggleLocation,
         setMinPriceRange,
         setMaxPriceRange,

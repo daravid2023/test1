@@ -34,9 +34,15 @@ function PropertiesForRent({ properties, ...props }) {
                     initialPage={properties.current_page}
                     total={Math.ceil(properties.total / properties.per_page)}
                     onChange={(page) =>
-                        Inertia.get(properties.first_page_url, {
-                            page: page,
-                        })
+                        Inertia.get(
+                            properties.first_page_url,
+                            {
+                                page: page,
+                            },
+                            {
+                                preserveState: true,
+                            }
+                        )
                     }
                 />
             </Container>

@@ -1,4 +1,4 @@
-import { Box } from "@mantine/core";
+import { Box, Image } from "@mantine/core";
 
 export function CarouselItem({ width, image_url }) {
     return (
@@ -9,11 +9,14 @@ export function CarouselItem({ width, image_url }) {
             }}
         >
             <img
+                style={{
+                    height: "100%",
+                }}
                 src={
                     (image_url && `storage/${image_url.split("public/")[1]}`) ||
                     "/static/brand/hero.jpg"
                 }
-                alt="hero"
+                alt="carousel image"
             />
         </Box>
     );

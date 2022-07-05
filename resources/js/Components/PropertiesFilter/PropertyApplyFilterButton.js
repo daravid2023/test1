@@ -1,5 +1,4 @@
 import { Inertia } from "@inertiajs/inertia";
-import { usePage } from "@inertiajs/inertia-react";
 import { Button, createStyles } from "@mantine/core";
 import { useContext } from "react";
 import { FilterContext } from "../../Context/FilterContext";
@@ -12,7 +11,8 @@ const useStyles = createStyles(() => ({
 
 function PropertyApplyFilterButton({ url }) {
     const { classes } = useStyles();
-    const { data } = useContext(FilterContext);
+    const { data, shouldApplyFilter, setShouldApplyFilter } =
+        useContext(FilterContext);
 
     const handleClick = () => {
         Inertia.get(
@@ -23,6 +23,7 @@ function PropertyApplyFilterButton({ url }) {
             },
             {
                 preserveState: true,
+                onSuccess: setShouldApplyFilter(false),
             }
         );
     };
@@ -33,6 +34,7 @@ function PropertyApplyFilterButton({ url }) {
             variant="gradient"
             gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
             onClick={handleClick}
+            disabled={!shouldApplyFilter}
         >
             Apply Filter
         </Button>
