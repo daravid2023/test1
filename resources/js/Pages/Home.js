@@ -56,7 +56,7 @@ export default function Home(props) {
                 <div className={classes.hero__container}>
                     <div className={classes.hero__main}>
                         <Title order={1}>
-                            Discover quality homes with ease.
+                            omg Discover quality homes with easeaasdfsdf.
                         </Title>
                         <Title
                             order={3}
